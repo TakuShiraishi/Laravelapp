@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div>
+  <form action="{{ route('items.index') }}" method="GET">
+    <input type="text" name="keyword" value="{{ $keyword }}">
+    <input type="submit" value="検索">
+  </form>
+</div>
   <table>
     <tr>
       <th>Item Id</th>

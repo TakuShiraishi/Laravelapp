@@ -12,8 +12,21 @@ class ItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $keyword = $request->input('keyword');
+
+        $query = item::query();
+
+        if(!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('description', 'LIKE', "%{$keyword}%");
+        }
+
+        $items = $query->get();
+
+        return view('index', compact('items', 'keyword'));
+
         $items = Item::all();
         return view('items/index', ['items' => $items]);
     }
