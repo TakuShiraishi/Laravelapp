@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
-    use HasFactory;
     public $guarded = ['id', 'created_at'];
+
 }

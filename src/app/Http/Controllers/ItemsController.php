@@ -25,10 +25,9 @@ class ItemsController extends Controller
 
         $items = $query->get();
 
-        return view('index', compact('items', 'keyword'));
+        return view('items.index', compact('items', 'keyword'));
 
-        $items = Item::all();
-        return view('items/index', ['items' => $items]);
+        
     }
 
     /**
@@ -49,6 +48,8 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
         $item = new Item;
         $item->name = $request->name;
         $item->description = $request->description;

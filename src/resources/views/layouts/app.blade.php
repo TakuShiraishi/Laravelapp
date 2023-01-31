@@ -66,12 +66,18 @@
                                         document.getElementById('create-form').submit();">
                                         {{ __('投稿') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('items.index') }}"
+                                    onclick="event.preventDefault();
+                                        document.getElementById('create-form').submit();">
+                                        {{ __('投稿一覧') }}
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                     <form id="create-form" action="{{ route('items.create') }}" method="GET" class="d-none">
-                                        @csrf
                                     </form>
+                                    <form id="index-form" action="{{ route('items.index') }}" method="GET" class="d-none">
+                                    </form> 
                                 </div>
                             </li>
                         @endguest
