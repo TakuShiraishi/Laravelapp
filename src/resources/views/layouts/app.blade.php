@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>Sample Title</title>
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -68,7 +69,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('items.index') }}"
                                     onclick="event.preventDefault();
-                                        document.getElementById('create-form').submit();">
+                                        document.getElementById('index-form').submit();">
                                         {{ __('投稿一覧') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

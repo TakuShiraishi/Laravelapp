@@ -10,4 +10,5 @@ class Item extends Model
     use HasFactory;
     public $guarded = ['id', 'created_at'];
 
+
 }

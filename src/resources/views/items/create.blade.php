@@ -9,7 +9,7 @@
           <h4>投稿画面</h4>
         </div>
           <div class="card-body">
-            <form action="/items" method="POST"  enctype='multipart/form-data' >
+            <form action="/items" method="POST"  enctype= "multipart/form-data" >
               @csrf 
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><label for="name" class="col-md-2 col-form-label text-md-right">商品名</label>
