@@ -2,12 +2,6 @@
 
 @section('content')
 <div class="card-body">
-@if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-    </div>
-@endif
-{{ __('You are logged in!') }}
 <div class="container">
     <div class="row">
         <div class="col-md-12 my-3 text-center">

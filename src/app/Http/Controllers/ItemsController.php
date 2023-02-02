@@ -12,6 +12,10 @@ class ItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function redirectPath()
+    {
+        return '/home';
+    }
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
@@ -48,7 +52,11 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+    ]);
         
         $item = new Item;
         $item->name = $request->name;
