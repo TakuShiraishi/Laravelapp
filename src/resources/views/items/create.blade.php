@@ -9,9 +9,9 @@
           <h4>投稿画面</h4>
         </div>
           <div class="card-body">
-          @foreach ($errors->all() as $error)
+            @foreach ($errors->all() as $error)
             <li>{{$error}}</li>
-            @endforeach
+              @endforeach
             <form action="/items" method="POST"  enctype= "multipart/form-data" >
               @csrf 
               <ul class="list-group list-group-flush">
@@ -27,16 +27,16 @@
                 </li>
                 <li class="list-group-item"><button type="submit" class="btn btn-primary ml-3" name='action' value='add'>
                         投稿
-                    </button>
+                  </button>
                 </li>
               </ul>
                 </div>
-                </div>
               </div>
             </div>
-          </div>  
-        </div>
-      </form>
-    </div>
+          </div>
+        </div>  
+      </div>
+    </form>
   </div>
+</div>
 @endsection

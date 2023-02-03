@@ -17,17 +17,18 @@
               <div class="card border-dark " >
                 <div class="card-header">
                   <h4>{{$item->name}}</h4>
-                  </div>
+                </div>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>値段:</strong>{{$item->price}}</li>
                     <li class="list-group-item"><strong>商品説明:</strong>{{$item->description}}</li>
                     <li class="list-group-item"><a href="/items/{{$item->id}}">詳細ページ</a></li>
                   </ul>
+              </div>
             </div>
+            @endforeach
           </div>
-          @endforeach
-        </div>
       </div>
+    </div>
   </div>
 </div>
 @endsection

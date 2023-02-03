@@ -15,14 +15,13 @@
             <form action="/items/{{$item->id}}" method="POST">
             {{ csrf_field() }}
             <li class="list-group-item"><input type="hidden" name="_method" value="delete">
-            <input type="submit" name="" value="削除" class="btn btn-danger"><li>
+            <a><input type="submit" name="" value="削除" class="btn btn-danger"></a>
             </form>
-            <li class="list-group-item"><a href="/items"><button type="button" class="btn btn-info">一覧ページに戻る</button></a></li>
             <li class="list-group-item">カートに入れる</a></li>
           </ul>
               @endsection
-          </div>
       </div>
+    </div>
   </div>
 </div>
   
