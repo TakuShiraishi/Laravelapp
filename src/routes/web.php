@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +20,8 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => ['loginUserCheck']], function() {
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Auth::routes();
     Route::resource('items', ItemsController::class);
     Route::resource('carts', CartController::class);
-});

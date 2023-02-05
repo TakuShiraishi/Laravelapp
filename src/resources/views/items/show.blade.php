@@ -17,7 +17,7 @@
             <li class="list-group-item"><input type="hidden" name="_method" value="delete">
             <a><input type="submit" name="" value="削除" class="btn btn-danger"></a>
             </form>
-            <li class="list-group-item">カートに入れる</a></li>
+            <h2><a href="{{ route('carts.index') }}">カートに入れる</a></h2>
           </ul>
               @endsection
       </div>

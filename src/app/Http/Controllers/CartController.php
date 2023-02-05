@@ -8,86 +8,40 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
+    public function __construct(Cart $cart) {
+        $this->cart = $cart;
+    }
+    public function index() {
+        $auth_id = Auth::id();
+        $carts = Cart::where('user_id', $auth_id)->get();
+        $subtotals = $this->subtotals($carts);
+        $totals = $this->totals($carts);
+        return view('carts.index', compact('carts', 'totals', 'subtotals'));
+    }
+    private function subtotals($carts) {
+        $result = 0;
+        foreach ($carts as $cart) {
+            $result += $cart->subtotal();
+        }
+        return $result;
+    }
     
+    private function totals($carts) {
+        $result = $this->subtotals($carts) + $this->tax($carts);
+        return $result;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('carts/create');
+    
+    private function tax($carts) {
+        $result = floor($this->subtotals($carts) * 0.1);
+        return $result;
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-        
-        $Carts = new Cart;
-        $cart->name = $request->name;
-        $cart->description = $request->quantity;
-        $cart->save();
-        return redirect('/carts');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $item = Item::find($id);
-        return view('carts.edit', ['cart' => $cart]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        
+    
+    public function add(Request $request) {
+        $item_id = $request->input('item_id');
+        if ($this->cart->insert($item_id, 1)) {
+            return redirect(route('cart.index'))->with('true_message', '商品をカートに入れました。');
+        } else {
+            return redirect(route('cart.index'))->with('false_message', '在庫が足りません。');
+        }
     }
 }
