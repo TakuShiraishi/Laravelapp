@@ -15,6 +15,10 @@
             <form action="/items" method="POST"  enctype= "multipart/form-data" >
               @csrf 
               <ul class="list-group list-group-flush">
+              <div class="form-group">
+                    <label for="image">画像登録</label>
+                    <input type="file" class="form-control-file" name='image' id="image">
+                </div>
                 <li class="list-group-item"><label for="name" class="col-md-2 col-form-label text-md-right">商品名</label>
                   <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
                 </li>

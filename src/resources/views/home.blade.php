@@ -16,7 +16,7 @@
                         <div class="col-md-10 mx-auto">
                         </div>
                     </div>
-                    <img src="/images/ramen.jpg" width="600" height="400">
+                    <img src="/image/ramen.jpg" width="600" height="400">
                 </div>
             </div>
         </div>

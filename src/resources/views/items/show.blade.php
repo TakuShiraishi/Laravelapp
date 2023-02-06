@@ -9,6 +9,7 @@
             <h2>{{$item->name}}</h2>
           </div>
           <ul class="list-group list-group-flush">
+          <img src="{{ asset('/storage/images/'.$item['image']) }}" class='w-50 mb-3'/>
             <li class="list-group-item"><h5><strong>値段:</strong>¥{{$item->price}}</h5></li>
             <li class="list-group-item"><h5><strong>商品説明</strong></br>{{$item->description}}</li>
             <li class="list-group-item"><a href="/items/{{$item->id}}/edit"><button type="button" class="btn btn-primary">編集</button></a></li>
@@ -17,7 +18,7 @@
             <li class="list-group-item"><input type="hidden" name="_method" value="delete">
             <a><input type="submit" name="" value="削除" class="btn btn-danger"></a>
             </form>
-            <h2><a href="{{ route('carts.index') }}">カートに入れる</a></h2>
+            <h2><a href="{{ route('cart.index') }}">カートに入れる</a></h2>
           </ul>
               @endsection
       </div>

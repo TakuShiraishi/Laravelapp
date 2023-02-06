@@ -16,7 +16,7 @@ class Cart extends Model
 
     public function item() {
         //リレーション
-        return $this->belongsTo('App\Item', 'item_id');
+        return $this->belongsTo('App\Models\Item', 'item_id');
     }
 
     public function insert($item_id, $add_qty) {

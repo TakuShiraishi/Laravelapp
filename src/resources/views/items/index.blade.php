@@ -19,6 +19,7 @@
                   <h4>{{$item->name}}</h4>
                 </div>
                   <ul class="list-group list-group-flush">
+                  <img src="{{ asset('/storage/images/'.$item['image']) }}" class='w-100 mb-3'/>
                     <li class="list-group-item"><strong>値段:</strong>{{$item->price}}</li>
                     <li class="list-group-item"><strong>商品説明:</strong>{{$item->description}}</li>
                     <li class="list-group-item"><a href="/items/{{$item->id}}">詳細ページ</a></li>

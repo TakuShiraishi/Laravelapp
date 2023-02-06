@@ -59,9 +59,15 @@ class ItemsController extends Controller
     ]);
         
         $item = new Item;
+        $item->image = $request->image;
         $item->name = $request->name;
         $item->description = $request->description;
         $item->price = $request->price;
+        if(request('image')) {
+            $name = request()->file('image')->getClientOriginalName();
+            request()->file('image')->storeAs('public/images',$name);
+            $item->image = $name;
+        }
         $item->save();
         return redirect('/items');
     }

@@ -24,4 +24,4 @@ Route::get('/', function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Auth::routes();
     Route::resource('items', ItemsController::class);
-    Route::resource('carts', CartController::class);
+    Route::resource('cart', CartController::class);
