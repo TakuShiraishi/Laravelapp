@@ -18,6 +18,11 @@ class CartController extends Controller
         $totals = $this->totals($carts);
         return view('carts.index', compact('carts', 'totals', 'subtotals'));
     }
+    public function store(Request $request)
+    {
+        
+    }
+
     private function subtotals($carts) {
         $result = 0;
         foreach ($carts as $cart) {

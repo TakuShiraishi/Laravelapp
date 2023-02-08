@@ -8,10 +8,19 @@
           <div class="card-header">
             <h2>{{$item->name}}</h2>
           </div>
+          <form action="{{ url('/cart')}}" method="POST" class="form-horizontal">
+              {{ csrf_field() }}
           <ul class="list-group list-group-flush">
           <img src="{{ asset('/storage/images/'.$item['image']) }}" class='w-50 mb-3'/>
             <li class="list-group-item"><h5><strong>値段:</strong>¥{{$item->price}}</h5></li>
             <li class="list-group-item"><h5><strong>商品説明</strong></br>{{$item->description}}</li>
+            <li class="list-group-item">
+              <label for="quantity" class="col-md-2 col-form-label text-md-right">個数</label>
+            <input id="quantity" type="text" class="form-control" name="quantity" value="{{ old('quantity') }}">
+            <button type="submit" class="btn btn-primary ml-3" name='action' value='add'>
+                        カートに入れる
+            </li>
+            </form>
             <li class="list-group-item"><a href="/items/{{$item->id}}/edit"><button type="button" class="btn btn-primary">編集</button></a></li>
             <form action="/items/{{$item->id}}" method="POST">
             {{ csrf_field() }}
