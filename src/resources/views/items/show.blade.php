@@ -14,21 +14,20 @@
           <img src="{{ asset('/storage/images/'.$item['image']) }}" class='w-50 mb-3'/>
             <li class="list-group-item"><h5><strong>値段:</strong>¥{{$item->price}}</h5></li>
             <li class="list-group-item"><h5><strong>商品説明</strong></br>{{$item->description}}</li>
-            <li class="list-group-item">
-              <label for="quantity" class="col-md-2 col-form-label text-md-right">個数</label>
-            <input id="quantity" type="text" class="form-control" name="quantity" value="{{ old('quantity') }}">
-            <button type="submit" class="btn btn-primary ml-3" name='action' value='add'>
-                        カートに入れる
-            </li>
-            </form>
             <li class="list-group-item"><a href="/items/{{$item->id}}/edit"><button type="button" class="btn btn-primary">編集</button></a></li>
             <form action="/items/{{$item->id}}" method="POST">
             {{ csrf_field() }}
             <li class="list-group-item"><input type="hidden" name="_method" value="delete">
             <a><input type="submit" name="" value="削除" class="btn btn-danger"></a>
             </form>
-            <h2><a href="{{ route('cart.index') }}">カートに入れる</a></h2>
           </ul>
+          <form action="/cart" method="POST" class="item-form" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="name" value="{{$item->name}}">
+            <input type="hidden" name="price" value="{{$item->price}}">
+            <input type="text" value="1" name="quantity" >
+            <button type="submit" class="btn-sm btn-blue">カートに入れる</button>
+          </form>
               @endsection
       </div>
     </div>

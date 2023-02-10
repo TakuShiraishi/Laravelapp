@@ -20,7 +20,21 @@ class CartController extends Controller
     }
     public function store(Request $request)
     {
-        
+        $cart = Cart::where('user_id',Auth::id())->where('item_id',$request->item_id)->first();
+        // カートに商品があるか確認
+        if($cart) {
+            $cart->quantity += $request->quantity;
+            // あれば数量追加
+            $cart->save();
+        } else {
+            // なければ新規作成
+            $cart = new Cart;
+            $cart->item_id = $request->item_id;
+            $cart->user_id = Auth::id();
+            $cart->quantity = $request->quantity;
+            $cart->save();    
+        }
+        return redirect()->route('cart.index');
     }
 
     private function subtotals($carts) {
