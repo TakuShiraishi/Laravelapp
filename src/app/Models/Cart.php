@@ -38,9 +38,11 @@ class Cart extends Model
             return false;
         }
 }
+        
 
 public function subtotal() {
     $result = $this->item->price * $this->quantity;
     return $result;
     }
+
 }

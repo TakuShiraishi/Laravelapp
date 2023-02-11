@@ -63,4 +63,10 @@ class CartController extends Controller
             return redirect(route('cart.index'))->with('false_message', '在庫が足りません。');
         }
     }
+
+    public function destroy($id) {
+        $cart = Cart::find($id);
+        $cart->delete();
+        return redirect()->route('cart.index');
+    }
 }
