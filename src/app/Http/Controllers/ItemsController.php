@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 class ItemsController extends Controller
 {
@@ -18,6 +20,9 @@ class ItemsController extends Controller
     }
     public function index(Request $request)
     {
+        Mail::to('test@example.com')
+        ->send(new TestMail());
+        
         $keyword = $request->input('keyword');
 
         $query = item::query();

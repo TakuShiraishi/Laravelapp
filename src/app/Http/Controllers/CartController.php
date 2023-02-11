@@ -44,7 +44,16 @@ class CartController extends Controller
         }
         return $result;
     }
-    
+
+    public function show($id)
+    {
+        $auth_id = Auth::id();
+        $carts = Cart::where('user_id', $auth_id)->get();
+        $subtotals = $this->subtotals($carts);
+        $totals = $this->totals($carts);
+        return view('carts.show', compact('carts', 'totals', 'subtotals'));
+    }
+
     private function totals($carts) {
         $result = $this->subtotals($carts) + $this->tax($carts);
         return $result;

@@ -24,7 +24,7 @@
           <form action="/cart" method="POST" class="item-form" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="item_id" value="{{$item->id}}">
-            <input type="text" value="1" name="quantity" >
+            <input type="text" value="0" name="quantity" >
             <button type="submit" class="btn-sm btn-blue">カートに入れる</button>
           </form>
               @endsection
