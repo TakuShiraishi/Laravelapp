@@ -25,8 +25,8 @@ class ItemsController extends Controller
         // ->send(new TestMail());
         // 同期テストメール
 
-        SendThanksMail::dispatch();
-
+        // SendThanksMail::dispatch();
+        // 非同期
         $keyword = $request->input('keyword');
 
         $query = item::query();

@@ -25,3 +25,4 @@ Route::get('/', function () {
     Auth::routes();
     Route::resource('items', ItemsController::class);
     Route::resource('cart', CartController::class);
+    Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');

@@ -27,10 +27,5 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function checkout()
-    {
-        Mail::to('test@example.com')
-        ->send(new TestMail());
-        return view('checkout');
-    }
+    
 }

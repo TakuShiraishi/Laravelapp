@@ -23,7 +23,7 @@
                 </td>
         </table>
 <br>
-<h2><a href="{{ route('checkout') }}">購入確定</a></h2>
+<h2><a href="{{ route('cart.checkout') }}">購入確定</a></h2>
 <h2><a href="{{ route('items.index') }}">商品一覧へ戻る</a></h2>
 <div>
 </body>

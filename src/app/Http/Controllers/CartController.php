@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 use App\Models\Cart;
+use App\Jobs\SendThanksMail;
+use App\Mail\ThanksMail;
+
 
 class CartController extends Controller
 {
@@ -77,5 +80,15 @@ class CartController extends Controller
         $cart = Cart::find($id);
         $cart->delete();
         return redirect()->route('cart.index');
+    }
+
+    public function checkout()
+    {
+        SendThanksMail::dispatch($carts, $user,$subtotals,$totals);
+        $auth_id = Auth::id();
+        $carts = Cart::where('user_id', $auth_id)->get();
+        $subtotals = $this->subtotals($carts);
+        $totals = $this->totals($carts);
+        return view('carts.checkout');
     }
 }
