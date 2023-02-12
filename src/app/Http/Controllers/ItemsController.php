@@ -6,6 +6,7 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
+use App\Jobs\SendThanksMail;
 
 class ItemsController extends Controller
 {
@@ -20,9 +21,12 @@ class ItemsController extends Controller
     }
     public function index(Request $request)
     {
-        Mail::to('test@example.com')
-        ->send(new TestMail());
-        
+        // Mail::to('test@example.com')
+        // ->send(new TestMail());
+        // 同期テストメール
+
+        SendThanksMail::dispatch();
+
         $keyword = $request->input('keyword');
 
         $query = item::query();

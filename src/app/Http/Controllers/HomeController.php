@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\TestMail;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,8 @@ class HomeController extends Controller
 
     public function checkout()
     {
+        Mail::to('test@example.com')
+        ->send(new TestMail());
         return view('checkout');
     }
 }
