@@ -18,10 +18,11 @@ use App\Http\Controllers\CartController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
+Auth::routes();
+Route::group(['middlewere' => ['auth']], function(){
+    Route::get('/checkout', [App\Http\Controllers\HomeController::class, 'checkout'])->name('checkout');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Auth::routes();
     Route::resource('items', ItemsController::class);
     Route::resource('cart', CartController::class);
+    Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+});

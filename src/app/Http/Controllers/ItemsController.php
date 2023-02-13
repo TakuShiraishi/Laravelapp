@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
+use App\Jobs\SendThanksMail;
 
 class ItemsController extends Controller
 {
@@ -12,12 +15,24 @@ class ItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function redirectPath()
     {
         return '/home';
     }
+
     public function index(Request $request)
     {
+        // Mail::to('test@example.com')
+        // ->send(new TestMail());
+        // 同期テストメール
+
+        // SendThanksMail::dispatch();
+        // 非同期
         $keyword = $request->input('keyword');
 
         $query = item::query();
@@ -56,6 +71,7 @@ class ItemsController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'image' => 'required',
     ]);
         
         $item = new Item;

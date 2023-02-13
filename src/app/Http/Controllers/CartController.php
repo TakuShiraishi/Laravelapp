@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 use App\Models\Cart;
+use App\Models\User;
+use App\Jobs\SendThanksMail;
+use App\Mail\ThanksMail;
+
 
 class CartController extends Controller
 {
     public function __construct(Cart $cart) {
         $this->cart = $cart;
+        $this->middleware('auth');
     }
     public function index() {
         $auth_id = Auth::id();
@@ -44,7 +49,16 @@ class CartController extends Controller
         }
         return $result;
     }
-    
+
+    public function show($id)
+    {
+        $auth_id = Auth::id();
+        $carts = Cart::where('user_id', $auth_id)->get();
+        $subtotals = $this->subtotals($carts);
+        $totals = $this->totals($carts);
+        return view('carts.show', compact('carts', 'totals', 'subtotals'));
+    }
+
     private function totals($carts) {
         $result = $this->subtotals($carts) + $this->tax($carts);
         return $result;
@@ -68,5 +82,16 @@ class CartController extends Controller
         $cart = Cart::find($id);
         $cart->delete();
         return redirect()->route('cart.index');
+    }
+
+    public function checkout()
+    {
+        $user = User::findOrFail(Auth::id());
+        $carts = Cart::where('user_id',Auth::id())->get();
+        $subtotals = $this->subtotals($carts);
+        $totals = $this->totals($carts);
+        SendThanksMail::dispatch($carts, $user,$subtotals,$totals);
+        Cart::where('user_id', Auth::id())->delete();
+        return view('carts.checkout');
     }
 }
