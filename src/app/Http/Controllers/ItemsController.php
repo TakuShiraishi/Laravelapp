@@ -15,10 +15,16 @@ class ItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function redirectPath()
     {
         return '/home';
     }
+
     public function index(Request $request)
     {
         // Mail::to('test@example.com')
@@ -65,6 +71,7 @@ class ItemsController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'image' => 'required',
     ]);
         
         $item = new Item;

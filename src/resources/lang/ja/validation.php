@@ -157,6 +157,7 @@ return [
         'name' => '商品名',
         'description' => '商品説明',
         'price' => '値段',
+        'image' => '画像',
     ],
 
 ];
