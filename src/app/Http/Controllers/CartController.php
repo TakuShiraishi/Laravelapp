@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Jobs\SendThanksMail;
 use App\Mail\ThanksMail;
 
-
 class CartController extends Controller
 {
     public function __construct(Cart $cart) {
@@ -90,6 +89,8 @@ class CartController extends Controller
         $carts = Cart::where('user_id',Auth::id())->get();
         $subtotals = $this->subtotals($carts);
         $totals = $this->totals($carts);
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
         SendThanksMail::dispatch($carts, $user,$subtotals,$totals);
         Cart::where('user_id', Auth::id())->delete();
         return view('carts.checkout');

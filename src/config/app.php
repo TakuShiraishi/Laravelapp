@@ -121,6 +121,7 @@ return [
     |
     */
 
+    'STRIPE_SECRET' => env('STRIPE_SECRET'),
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
