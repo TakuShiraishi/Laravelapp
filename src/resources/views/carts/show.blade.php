@@ -23,11 +23,11 @@
                 </td>
         </form>
         </table>
-        <form action="{{ asset('pay') }}" method="POST">
+        <form action="{{ asset('payment') }}" method="POST">
         {{ csrf_field() }}
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="{{ config('app.STRIPE_SECRET') }}"
+                data-key="{{ config('app.STRIPE_KEY') }}"
                 data-amount="100"
                 data-name="Stripe決済デモ"
                 data-label="決済をする"
