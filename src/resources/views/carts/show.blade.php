@@ -30,7 +30,7 @@
                 data-key="{{ config('app.STRIPE_KEY') }}"
                 data-amount="{{ $totals }}"
                 data-name="Stripe決済デモ"
-                data-label="決済をする"
+                data-label="購入確定"
                 data-description="これはデモ決済です"
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                 data-locale="auto"
@@ -38,7 +38,6 @@
         </script>
         </form>
 <br>
-<h2><a href="{{ route('cart.checkout') }}">購入確定</a></h2>
 <h2><a href="{{ route('items.index') }}">商品一覧へ戻る</a></h2>
 <div>
 </body>

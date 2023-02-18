@@ -65,12 +65,12 @@
                                     <a class="dropdown-item" href="{{ route('items.create') }}"
                                     onclick="event.preventDefault();
                                         document.getElementById('create-form').submit();">
-                                        {{ __('投稿') }}
+                                        {{ __('商品の投稿') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('items.index') }}"
                                     onclick="event.preventDefault();
                                         document.getElementById('index-form').submit();">
-                                        {{ __('投稿一覧') }}
+                                        {{ __('商品一覧') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('cart.index') }}"
                                     onclick="event.preventDefault();

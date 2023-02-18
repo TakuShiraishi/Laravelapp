@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <body>
-@if (0 < $carts->count())
-        <table>
+                @if (0 < $carts->count())
+                <table>
                 <h1>カート内容</h1>
                 <tr style="background-color:#e3f0fb">
                         <th>商品名</th>
