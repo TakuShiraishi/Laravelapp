@@ -26,12 +26,24 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <label for="mobile_phone_number" class="col-md-4 col-form-label text-md-end">{{ __('電話番号') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="mobile_phone_number" type="mobile_phone_number" class="form-control @error('mobile_phone_number') is-invalid @enderror" name="mobile_phone_number" value="{{ old('mobile_phone_number') }}" required autocomplete="mobile_phone_number">
+                                @error('mobile_phone_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
