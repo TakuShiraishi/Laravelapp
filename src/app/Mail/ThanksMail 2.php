@@ -31,6 +31,6 @@ class ThanksMail extends Mailable
     public function build()
     {
         return $this->view('emails.thanks')
-        ->subject('ご購入ありがとうございます!');
+        ->subject('ご購入ありがとうございます');
     }
 }

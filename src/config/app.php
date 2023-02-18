@@ -120,7 +120,8 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
-
+    'STRIPE_KEY' => env('STRIPE_KEY'),
+    'STRIPE_SECRET' => env('STRIPE_SECRET'),
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',

@@ -8,7 +8,9 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Jobs\SendThanksMail;
 use App\Mail\ThanksMail;
-
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 
 class CartController extends Controller
 {
@@ -93,5 +95,31 @@ class CartController extends Controller
         SendThanksMail::dispatch($carts, $user,$subtotals,$totals);
         Cart::where('user_id', Auth::id())->delete();
         return view('carts.checkout');
+    }
+
+    public function payment(Request $request){
+        
+        try{
+        Stripe::setApiKey(config('app.STRIPE_SECRET'));
+        // Stripe::setApiKey(env('STRIPE_SECRET'));//シークレットキー
+        $customer = Customer::create(array(
+            'email' => $request->stripeEmail,
+            'source' => $request->stripeToken
+        ));
+        $user = User::findOrFail(Auth::id());
+        $carts = Cart::where('user_id',Auth::id())->get();
+        $subtotals = $this->subtotals($carts);
+        $totals = $this->totals($carts);
+
+        $charge = Charge::create(array(
+            'customer' => $customer->id,
+            'amount' => $totals,
+            'currency' => 'jpy',
+        ));
+        Cart::where('user_id', Auth::id())->delete();
+        return view('carts.checkout');
+        }catch (Exrption $ex) {
+            return $ex->geMessage();
+        }
     }
 }

@@ -25,4 +25,5 @@ Route::group(['middlewere' => ['auth']], function(){
     Route::resource('items', ItemsController::class);
     Route::resource('cart', CartController::class);
     Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/payment',  [App\Http\Controllers\CartController::class, 'payment'])->name('payment');
 });

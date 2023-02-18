@@ -72,6 +72,11 @@
                                         document.getElementById('index-form').submit();">
                                         {{ __('投稿一覧') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('cart.index') }}"
+                                    onclick="event.preventDefault();
+                                        document.getElementById('cart-form').submit();">
+                                        {{ __('カート') }}
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -79,6 +84,8 @@
                                     </form>
                                     <form id="index-form" action="{{ route('items.index') }}" method="GET" class="d-none">
                                     </form> 
+                                    <form id="cart-form" action="/cart" method="GET" class="d-none">
+                                    </form>
                                 </div>
                             </li>
                         @endguest

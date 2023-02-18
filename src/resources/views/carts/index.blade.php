@@ -30,13 +30,13 @@
                         <td></td>
                 </td>
         </table>
+        <li class="list-group-item"><a href="/cart/{{$cart->id}}">購入確定画面に進む</a></li>
 @else
         <h1>カートに商品はありません</h1>
 @endif
 <br>
 <h2><a href="{{ route('items.index') }}">商品一覧へ戻る</a></h2>
 <div>
-<li class="list-group-item"><a href="/cart/{{$cart->id}}">購入確定画面</a></li>
 </button>
 </div>
 </body>
