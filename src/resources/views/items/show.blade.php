@@ -11,7 +11,7 @@
           <form action="{{ url('/cart')}}" method="POST" class="form-horizontal">
               {{ csrf_field() }}
           <ul class="list-group list-group-flush">
-          <img src="{{ asset('/storage/images/'.$item['image']) }}" class='w-50 mb-3'/>
+            <img src="{{ asset('/storage/images/'.$item['image']) }}"  style="width:60%" class="mx-auto d-block">
             <li class="list-group-item"><h5><strong>値段:</strong>¥{{$item->price}}</h5></li>
             <li class="list-group-item"><h5><strong>商品説明</strong></br>{{$item->description}}</li>
             <li class="list-group-item"><a href="/items/{{$item->id}}/edit"><button type="button" class="btn btn-primary">編集</button></a></li>
