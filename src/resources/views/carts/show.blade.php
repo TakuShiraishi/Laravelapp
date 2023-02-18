@@ -28,7 +28,7 @@
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="{{ config('app.STRIPE_KEY') }}"
-                data-amount="100"
+                data-amount="{{ $totals }}"
                 data-name="Stripe決済デモ"
                 data-label="決済をする"
                 data-description="これはデモ決済です"
