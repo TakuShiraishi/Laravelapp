@@ -88,13 +88,7 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $user = User::findOrFail(Auth::id());
-        $carts = Cart::where('user_id',Auth::id())->get();
-        $subtotals = $this->subtotals($carts);
-        $totals = $this->totals($carts);
-        SendThanksMail::dispatch($carts, $user,$subtotals,$totals);
-        Cart::where('user_id', Auth::id())->delete();
-        return view('carts.checkout');
+        
     }
 
     public function payment(Request $request){
@@ -110,6 +104,7 @@ class CartController extends Controller
         $carts = Cart::where('user_id',Auth::id())->get();
         $subtotals = $this->subtotals($carts);
         $totals = $this->totals($carts);
+        SendThanksMail::dispatch($carts, $user,$subtotals,$totals);
 
         $charge = Charge::create(array(
             'customer' => $customer->id,
